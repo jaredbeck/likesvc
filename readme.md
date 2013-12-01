@@ -13,6 +13,14 @@ A proof-of-concept HTTP server in [golang][1].
     curl http://localhost:4000/like/1
     map[1:502 2:1]
 
+By comparison, the default apache on mac os 10.8, which admittedly
+has far more burdens (aka. features), and is almost certainly not
+configured ideally:
+
+    echo "herp de derp" > ~/Sites/derp.txt
+    ab -c 500 -n 500 -r http://127.0.0.1/~jared/derp.txt
+    Requests per second:    448.92 [#/sec] (mean)
+
 Testing
 -------
 
