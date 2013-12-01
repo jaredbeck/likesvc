@@ -23,18 +23,17 @@ type LikeHandler struct{}
 reference" (with a `*`) or "by value".
 - http://tour.golang.org/#50
 - http://tour.golang.org/#52
+- http://golang.org/pkg/net/http/#Error
+- http://learntogoogleit.com/post/63098708081/returning-status-codes-in-golang
 */
 func (l LikeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
   var id, err = strconv.ParseInt(LastPathPart(r.URL), 10, 64)
   if err == nil {
     likes[id] ++
+    fmt.Fprintf(w, "%+v", likes)
   } else {
-    fmt.Fprintf(w, "%v\n", err)
+    http.Error(w, fmt.Sprintf("%v", err), 400)
   }
-
-  /* when printing structs, the plus flag (%+v) adds field names
-  http://golang.org/pkg/fmt */
-  fmt.Fprintf(w, "%+v", likes)
 }
 
 func LastPathPart(u *url.URL) string {
