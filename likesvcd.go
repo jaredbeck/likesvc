@@ -30,9 +30,9 @@ func (l LikeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
   var id, err = strconv.ParseInt(LastPathPart(r.URL), 10, 64)
   if err == nil {
     likes[id] ++
-    fmt.Fprintf(w, "%+v", likes)
+    fmt.Fprintf(w, "%+v\n", likes)
   } else {
-    http.Error(w, fmt.Sprintf("%v", err), 400)
+    http.Error(w, fmt.Sprintf("%v\n", err), 400)
   }
 }
 
